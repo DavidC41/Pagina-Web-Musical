@@ -1,1 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+        <title>Biberon</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
+
+        <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+        <header class="main-header" id="header">
+                <div class="logo-container">
+                        <h1 class="brand-name">BIBERON</h1>
+                </div>
+                
+                <input type="checkbox" id="menu-toggle">
+
+                <div class="header-actions">
+                        <button class="action-item" aria-label="Buscar">Search</button>
+                        <button class="action-item" aria-label="Usuario">User</button>
+                        <button class="action-item" aria-label="Carro">Carro</button>
+
+                        <button class="action-menu" id="open-menu" aria-label="Abir menú">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                        </button>
+
+                </div>
+               <nav id="side-menu" class="side-menu">
+                        <div class="menu-header">
+                                <span class="menu-tittle">MENÚ</span>
+                                <button class="close-menu" id="close-menu">CLOSE</button>
+                        </div>
+    
+                        <div class="menu-content">
+                                <ul class="nav-links">
+                                        <li>
+                                            <a href="#vinilos" data-text="Vinilos">VINILOS</a>
+                                        </li>
+                                        <li>
+                                            <a href="#artistas" data-text="Artistas">ARTISTAS</a>
+                                        </li>
+                                        <li>
+                                            <a href="#descubre" data-text="Emergentes">DESCUBRE</a>
+                                        </li>
+                                </ul>
+                        </div>
+                </nav>
+        </header>
+        <main class="container">
+                <section class="hero-section">
+                        <div class="sticky-wrapper">
+                                <h1 class="main-slogan">It's lifestyle</h1>
+                        </div>
+                </section>
+                <section class="section-content">
+                        <video autoplay muted loop playsinline class="bg-video">
+                                <source src="" type="video/mp4">
+                        </video>
+                </section>
+                <section class="vinilos-grid" id="vinilos">
+                        <div class="section-header">
+                                <h2 class="section-title">Vinilos</h2>
+                                <a href="#" class="view-all">Ver todo</a>
+                        </div>
+
+                        <div class="grid-container">
+                                <article class="vinilo-card">
+                                        <div class="vinilo-image">
+                                                <img src="" alt="vinilo">
+                                        </div>
+                                        <div class="vinilo-info">
+                                                <span class="artista">Diego900</span>
+                                                <span class="album">La espalda del sol</span>
+                                                <span class="precio">25,99€</span>
+                                        </div>
+                                </article>
+                        </div>
+                </section>
+
+        </main>
+</body>
+</html>

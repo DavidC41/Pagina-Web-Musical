@@ -125,8 +125,7 @@ body {
     text-transform: uppercase;
 }
 
-/* --- NUEVA LÓGICA DEL BODY (ESLOGAN Y FONDOS) --- */
-
+/* --- SECCIÓN 1: ESLOGAN --- */
 .hero-section {
     height: 150vh; 
     position: relative;
@@ -162,7 +161,7 @@ body {
     }
 }
 
-/* --- SECCIÓN 2: VÍDEO DE FONDO --- */
+/* --- SECCIÓN 2: VÍDEO --- */
 .section-content {
     position: relative;
     min-height: 100vh;
@@ -182,21 +181,15 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.4); /* Oscurece el vídeo para que resalte el texto */
+    filter: brightness(0.4); 
 }
 
-.content-box {
-    color: #fff;
-    text-align: center;
-    z-index: 2;
-}
-
-/* --- SECCIÓN 3: REJILLA DE VINILOS --- */
+/* --- SECCIÓN 3: VINILOS (CORREGIDA) --- */
 .vinilos-grid {
     background-color: #000;
-    padding: 100px 30px;
+    padding: 80px 10%; /* Aumentamos margen lateral para que no pegue a los bordes */
     position: relative;
-    z-index: 20; /* Por encima de todo lo anterior */
+    z-index: 20;
 }
 
 .section-header {
@@ -210,8 +203,9 @@ body {
 
 .section-title {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 900;
+    text-transform: uppercase;
 }
 
 .view-all {
@@ -224,13 +218,17 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Reducimos el minmax a 220px para que quepan más vinilos y se vean más pequeños */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
+    justify-items: center; /* Centra las tarjetas dentro de su celda */
 }
 
 .vinilo-card {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 280px; /* LIMITE CRÍTICO: Evita que la imagen crezca demasiado */
 }
 
 .vinilo-image {
@@ -239,17 +237,18 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     background-color: #111;
+    border: 1px solid #222; /* Sutil borde de funda */
 }
 
 .vinilo-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Recorta la imagen para llenar el cuadrado sin deformar */
     transition: transform 0.5s ease;
 }
 
-.vinilo-card:hover img {
-    transform: scale(1.05);
+.vinilo-card:hover .vinilo-image img {
+    transform: scale(1.1); /* Efecto zoom un poco más marcado */
 }
 
 .vinilo-info {
@@ -258,6 +257,23 @@ body {
     gap: 5px;
 }
 
-.artista { color: #888; font-size: 0.75rem; font-weight: 700; }
-.album { color: #fff; font-size: 1.1rem; font-weight: 500; }
-.precio { color: #79d616; font-weight: 800; margin-top: 10px; }
+.artista { 
+    color: #888; 
+    font-size: 0.7rem; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.album { 
+    color: #fff; 
+    font-size: 1rem; 
+    font-weight: 500; 
+}
+
+.precio { 
+    color: #79d616; 
+    font-weight: 800; 
+    margin-top: 10px; 
+    font-size: 0.9rem;
+}

@@ -1,4 +1,3 @@
-/* Reset global */
 * {
     margin: 0;
     padding: 0;
@@ -11,12 +10,12 @@ body {
     overflow-x: hidden; 
 }
 
-/* --- LÓGICA DEL INPUT --- */
+
 #menu-toggle {
     display: none; 
 }
 
-/* Header con fondo negro */
+
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -125,7 +124,7 @@ body {
     text-transform: uppercase;
 }
 
-/* --- SECCIÓN 1: ESLOGAN (ANIMACIÓN DOBLE) --- */
+
 .hero-section {
     height: 150vh; 
     position: relative;
@@ -150,7 +149,7 @@ body {
     text-transform: uppercase;
     white-space: nowrap;
     
-    /* ANIMACIÓN: La primera sigue el scroll, la segunda es infinita */
+    
     animation: 
         shrink-and-fix linear both,
         font-glitch 0.6s infinite; 
@@ -158,7 +157,7 @@ body {
     animation-timeline: scroll(), auto;
 }
 
-/* Animación de tamaño y posición según el scroll */
+
 @keyframes shrink-and-fix {
     from { transform: scale(1); }
     to { 
@@ -167,7 +166,7 @@ body {
     }
 }
 
-/* Animación de cambio de tipografías automática */
+
 @keyframes font-glitch {
     0%, 100% { font-family: 'Rubik', sans-serif; }
     25% { font-family: 'Playfair Display', serif; }
@@ -311,16 +310,16 @@ footer {
 
 .main-footer {
     background-color: #121212;
-    padding: 40px 20px; /* Más espacio vertical */
+    padding: 40px 20px; 
     font-family: 'Rubik', sans-serif;
-    border-top: 1px solid #333; /* Línea sutil superior */
+    border-top: 1px solid #333;
 }
 
 .footer-container {
     display: flex;
-    flex-direction: column; /* Elementos uno sobre otro */
+    flex-direction: column; 
     align-items: center;
-    gap: 15px; /* Espacio constante entre elementos */
+    gap: 15px;
 }
 
 .copyright {
@@ -332,27 +331,46 @@ footer {
 .footer-links {
     display: flex;
     align-items: center;
-    gap: 20px; /* Separación entre los links */
+    gap: 20px;
 }
 
 .footer-link {
     color: #bbb;
     text-decoration: none;
     font-size: 0.85rem;
-    transition: all 0.3s ease; /* Transición suave */
+    transition: all 0.3s ease; 
 }
 
 .footer-link:hover {
     color: #fff;
-    transform: translateY(-2px); /* Pequeño salto al pasar el ratón */
+    transform: translateY(-2px); 
 }
 
 .contact-highlight {
-    color: #1DB954; /* Verde Spotify/Vinilo para destacar */
+    color: #1DB954; 
     font-weight: 500;
 }
 
 .separator {
     color: #444;
     user-select: none;
+}
+
+.nav-icon {
+    width: 150px;
+    height: 150px;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.action-item {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.action-item:hover .nav-icon {
+    transform: scale(1.1);
+    opacity: 0.8;
 }

@@ -161,6 +161,14 @@ body {
     }
 }
 
+/* Animación de cambio de tipografías automática */
+@keyframes font-glitch {
+    0%, 100% { font-family: 'Rubik', sans-serif; }
+    25% { font-family: 'Playfair Display', serif; }
+    50% { font-family: 'Space Mono', monospace; }
+    75% { font-family: 'Archivo Black', sans-serif; }
+}
+
 /* --- SECCIÓN 2: VÍDEO --- */
 .section-content {
     position: relative;

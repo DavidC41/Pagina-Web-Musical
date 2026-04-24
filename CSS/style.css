@@ -337,3 +337,22 @@ body {
 .separator {
     color: #444;
 }
+.nav-icon {
+    width: 150px;  /* Ajusta según el diseño */
+    height: 150px;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.action-item {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Micro-interacción: el icono crece un poco al pasar el ratón */
+.action-item:hover .nav-icon {
+    transform: scale(1.1);
+    opacity: 0.8;
+}

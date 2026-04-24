@@ -277,3 +277,70 @@ body {
     margin-top: 10px; 
     font-size: 0.9rem;
 }
+
+footer {
+    font-family: 'Rubik', sans-serif;
+    padding: 2rem;
+    text-align: center;
+    background: #121212;
+    color: white;
+}
+
+.contact-link {
+    color: #1DB954;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #1ed760;
+    text-decoration: underline;
+}
+
+.main-footer {
+    background-color: #121212;
+    padding: 40px 20px; /* Más espacio vertical */
+    font-family: 'Rubik', sans-serif;
+    border-top: 1px solid #333; /* Línea sutil superior */
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column; /* Elementos uno sobre otro */
+    align-items: center;
+    gap: 15px; /* Espacio constante entre elementos */
+}
+
+.copyright {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Separación entre los links */
+}
+
+.footer-link {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.footer-link:hover {
+    color: #fff;
+    transform: translateY(-2px); /* Pequeño salto al pasar el ratón */
+}
+
+.contact-highlight {
+    color: #1DB954; /* Verde Spotify/Vinilo para destacar */
+    font-weight: 500;
+}
+
+.separator {
+    color: #444;
+    user-select: none;
+}

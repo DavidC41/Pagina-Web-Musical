@@ -55,7 +55,6 @@ body {
     background: none;
     border: none;
     border-left: 1px solid #222;
-    color: #79d616;
     width: 70px;
     cursor: pointer;
     display: flex;
@@ -337,8 +336,9 @@ body {
 .separator {
     color: #444;
 }
+
 .nav-icon {
-    width: 150px;  /* Ajusta según el diseño */
+    width: 150px;  
     height: 150px;
     display: block;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -351,8 +351,73 @@ body {
     cursor: pointer;
 }
 
-/* Micro-interacción: el icono crece un poco al pasar el ratón */
+
 .action-item:hover .nav-icon {
     transform: scale(1.1);
     opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    /* 1. Header: Bloqueo total */
+    .main-header {
+        height: 60px;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Usamos vw para que ignore cualquier padding del body */
+        z-index: 2000;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* 2. Evitar que los botones estiren el header */
+    .header-actions {
+        height: 100%;
+        display: flex;
+    }
+
+    .action-item, .action-menu {
+        width: 50px;
+        height: 60px;
+        flex-shrink: 0; /* Impide que se deformen */
+        font-size: 0.6rem;
+    }
+
+    /* 3. El Eslogan: Ajustamos el margen superior para que no "empuje" al cargar */
+    .hero-section {
+        margin-top: 0; 
+        padding-top: 60px; /* Espacio para que el eslogan no empiece debajo del header */
+    }
+
+    .main-slogan {
+        font-size: 14vw; /* Un poco más pequeño para evitar desbordamientos laterales */
+        white-space: normal;
+        word-break: break-word;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    /* 4. El Video: Aseguramos que el margen negativo sea exacto */
+    .section-content {
+        margin-top: -100vh;
+        height: 100vh;
+        z-index: 1;
+    }
+
+    /* 5. Vinilos: Estabilidad en la cuadrícula */
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    /* 6. Menú Lateral: Que no mueva la pantalla */
+    .side-menu {
+        top: 60px;
+        height: calc(100vh - 60px); /* Ocupa el resto de la pantalla */
+        position: fixed;
+    }
 }

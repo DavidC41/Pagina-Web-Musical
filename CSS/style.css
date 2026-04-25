@@ -20,7 +20,7 @@ body {
 .main-header {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
     background-color: #000;
     height: 70px;
     width: 100%;
@@ -29,6 +29,7 @@ body {
     left: 0;
     border-bottom: 1px solid #222;
     z-index: 1000;
+    padding: 0 2rem;
 }
 
 .logo-container {
@@ -48,6 +49,7 @@ body {
 .header-actions {
     display: flex;
     margin-left: auto;
+    height: 200%;
 }
 
 /* Estilo de los botones */
@@ -55,16 +57,14 @@ body {
     background: none;
     border: none;
     border-left: 1px solid #222;
-    width: 70px;
+    width: 80px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: background 0.3s ease;
-    font-family: 'Rubik', sans-serif;
-    font-size: 0.7rem;
-    text-transform: uppercase;
+    font-size: 0.1rem;
 }
 
 .action-item:hover, .action-menu:hover {
@@ -82,16 +82,22 @@ body {
 
 /* --- MENÚ DESPLEGABLE --- */
 .side-menu {
-    position: absolute;
-    top: 70px; 
-    left: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
     width: 100%;
+    height: 100vh;
     background-color: #000;
-    border-bottom: 1px solid #222;
-    max-height: 0; 
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    z-index: 999;
+    z-index: 3000; /* Por encima de TODO */
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%); /* Escondido arriba */
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); /* Movimiento fluido */
+} 
+
+/* Clase para activar con JS */
+.side-menu.is-active {
+    transform: translateY(0);
 }
 
 #menu-toggle:checked ~ .side-menu {
@@ -113,13 +119,36 @@ body {
     font-size: 0.9rem;
 }
 
+/* Estilo para tu botón CLOSE dentro del menú */
+.close-menu {
+    background: none;
+    border: none;
+    border-left: 1px solid #222;
+    width: 80px;
+    height: 100%;
+    cursor: pointer;
+    color: #79d616; /* Color verde de tu marca */
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.close-menu:hover {
+    background-color: #111;
+}
+
 .menu-content { padding: 20px 30px; }
 .nav-links { list-style: none; }
 .nav-links li { padding: 15px 0; }
 .nav-links a {
     text-decoration: none;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -145,7 +174,7 @@ body {
 
 .main-slogan {
     color: #79d616;
-    font-size: 30vw; 
+    font-size: 11vw; 
     font-weight: 900;
     text-align: center;
     text-transform: lowercase;

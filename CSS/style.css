@@ -34,12 +34,12 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    padding-left: 30px;
+    padding: 30px;
 }
 
 .brand-name {
     color: #79d616;
-    font-size: 1.2rem;
+    font-size: 1.9rem;
     font-weight: 800;
     letter-spacing: 2px;
     font-family: 'Rubik' sans-serif;
@@ -127,7 +127,7 @@ body {
 
 /* --- SECCIÓN 1: ESLOGAN (AJUSTADA PARA QUE SE VEA EL VÍDEO) --- */
 .hero-section {
-    height: 100vh; 
+    height: 200vh; 
     position: relative;
     background-color: transparent; /* IMPORTANTE: Transparente para ver el video debajo */
     z-index: 10;
@@ -145,10 +145,10 @@ body {
 
 .main-slogan {
     color: #79d616;
-    font-size: 10vw; 
+    font-size: 30vw; 
     font-weight: 900;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: lowercase;
     white-space: nowrap;
     
     animation: 
@@ -408,7 +408,7 @@ body {
 
     /* 5. Vinilos: Estabilidad en la cuadrícula */
     .grid-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 10fr;
         gap: 25px;
         width: 100%;
         padding: 0 20px;

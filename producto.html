@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>BIBERON - Colección</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/style.css">    
+    <link rel="stylesheet" href="CSS/producto.css"> 
+</head>
+<body class="product-view">
+
+    <header class="main-header">
+        <div class="logo-container">
+            <h1 class="brand-name">BIBERON</h1>
+        </div>
+        
+        <div class="header-actions">
+            <button class="action-item"><img src="/Imagenes/lupa.png" class="nav-icon"></button>
+            <button class="action-item"><img src="/Imagenes/usuario.png" class="nav-icon"></button>
+            <button class="action-item"><img src="/Imagenes/carrito.png" class="nav-icon"></button>
+            <button class="action-menu" id="open-menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+
+        <nav id="side-menu" class="side-menu">
+            <div class="menu-header">
+                <span class="menu-tittle">MENÚ</span>
+                <button class="close-menu" id="close-menu">CERRAR</button>
+            </div>
+            <div class="menu-content">
+                <ul class="nav-links">
+                    <li><a href="index.html#vinilos">VINILOS</a></li>
+                    <li><a href="index.html#artistas">DESCUBRE</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-main">
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="badge-soldout" id="status-badge">SOLD OUT</div>
+                <img src="" alt="" id="main-img">
+            </div>
+
+            <div class="product-info">
+                <div class="artist-label" id="txt-artista"></div>
+                <h1 class="product-title" id="txt-titulo"></h1>
+                <div class="product-price" id="txt-precio"></div>
+
+                <div class="product-desc" id="txt-descripcion"></div>
+
+                <div class="action-btns">
+                    <button class="btn-status" id="btn-principal">COMPRAR</button>
+                    <button class="btn-notify" id="btn-secondary">AVÍSAME CUANDO ESTÉ DISPONIBLE</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/JavaScript/javaScript.js"></script>
+</body>
+</html>

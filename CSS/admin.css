@@ -1,0 +1,81 @@
+/* admin.css */
+.admin-page {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.admin-container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px 0;
+}
+
+.login-card {
+    background: #0a0a0a;
+    padding: 40px;
+    border: 1px solid #1a1a1a;
+    text-align: center;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    background: #111;
+    border: 1px solid #79d616;
+    color: #fff;
+}
+
+.back-link {
+    color: #79d616;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.btn-main {
+    background: #79d616;
+    color: #000;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: #79d616;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.input-group input, .input-group textarea {
+    padding: 12px;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.output-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: #111;
+    border: 1px dashed #79d616;
+    color: #79d616;
+    font-family: monospace;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    display: none;
+}

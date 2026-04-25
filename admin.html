@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>BIBERON - Admin Panel</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS admin/admin.css">
+</head>
+<body class="admin-page">
+
+    <section id="login-section" class="admin-container">
+        <a href="index.html" class="back-link">← VOLVER AL INICIO</a>
+        <div class="login-card">
+            <h1 class="brand-name">ADMIN LOGIN</h1>
+            <p>Introduce la clave de acceso para gestionar el catálogo</p>
+            <input type="password" id="admin-pass" placeholder="Contraseña">
+            <button class="btn-main" onclick="verificarPassword()">ENTRAR</button>
+        </div>
+    </section>
+
+    <section id="form-section" class="admin-container" style="display: none;">
+        <header class="admin-header">
+            <h1>GESTIÓN DE PRODUCTOS</h1>
+            <p>Rellena los campos para generar el bloque de datos</p>
+        </header>
+        
+        <div class="admin-form">
+            <div class="input-group">
+                <label>ID Único (ej: diego-espalda-sol)</label>
+                <input type="text" id="p-id">
+            </div>
+            <div class="input-group">
+                <label>Artista</label>
+                <input type="text" id="p-artista">
+            </div>
+            <div class="input-group">
+                <label>Título del Álbum</label>
+                <input type="text" id="p-titulo">
+            </div>
+            <div class="input-group">
+                <label>Precio</label>
+                <input type="text" id="p-precio" placeholder="00,00 €">
+            </div>
+            <div class="input-group">
+                <label>Imagen (solo el nombre con .png)</label>
+                <input type="text" id="p-img" placeholder="portada.png">
+            </div>
+            <div class="input-group">
+                <label>Descripción</label>
+                <textarea id="p-desc" rows="4"></textarea>
+            </div>
+
+            <button class="btn-main" id="generate-btn">GENERAR BLOQUE JSON</button>
+            
+            <div id="code-output" class="output-box"></div>
+        </div>
+    </section>
+
+    <script src="/JavaScript/javaScript.js"></script>
+</body>
+</html>

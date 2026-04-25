@@ -40,7 +40,7 @@ const catalogo = {
         artista: "Diego 900",
         titulo: "La Espalda del Sol",
         precio: "30,00 €",
-        imagen: "/Imagenes/diego900-vinilo.png",
+        imagen: "Imagenes/diego900-vinilo.png",
         desc: "Edición limitada en formato doble vinilo. Contiene 2 vinilos de 180gr y pósters exclusivos.",
         agotado: true
     },
@@ -48,7 +48,7 @@ const catalogo = {
         artista: "Kanye West",
         titulo: "My Beautiful Dark Twisted Fantasy",
         precio: "49,99 €",
-        imagen: "/Imagenes/Kanye_West-vinilo.png",
+        imagen: "Imagenes/Kanye_West-vinilo.png",
         desc: "Edición de lujo con arte original y triple vinilo de alta fidelidad.",
         agotado: false
     }

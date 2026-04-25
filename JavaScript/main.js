@@ -40,7 +40,7 @@ const catalogo = {
         artista: "Diego 900",
         titulo: "La Espalda del Sol",
         precio: "30,00 €",
-        imagen: "Imagenes/diego900-vinilo.png",
+        imagen: "/Imagenes/diego900-vinilo.png",
         desc: "Edición limitada en formato doble vinilo. Contiene 2 vinilos de 180gr y pósters exclusivos.",
         agotado: true
     },
@@ -48,7 +48,7 @@ const catalogo = {
         artista: "Kanye West",
         titulo: "My Beautiful Dark Twisted Fantasy",
         precio: "49,99 €",
-        imagen: "Imagenes/Kanye_West-vinilo.png",
+        imagen: "/Imagenes/Kanye_West-vinilo.png",
         desc: "Edición de lujo con arte original y triple vinilo de alta fidelidad.",
         agotado: false
     }
@@ -91,3 +91,86 @@ function cargarDatosProducto() {
 
 // Ejecutamos la función de carga al iniciar
 window.addEventListener('load', cargarDatosProducto);
+
+/* --- LÓGICA DE ADMIN --- */
+function verificarPassword() {
+    const pass = document.getElementById('admin-pass').value;
+    // Pon aquí la contraseña que quieras para tu trabajo
+    if(pass === "BIBERON2026") {
+        document.getElementById('login-section').style.display = "none";
+        document.getElementById('form-section').style.display = "block";
+    } else {
+        alert("Acceso denegado");
+    }
+}
+
+const generateBtn = document.getElementById('generate-btn');
+if (generateBtn) {
+    generateBtn.addEventListener('click', () => {
+        const id = document.getElementById('p-id').value;
+        const artista = document.getElementById('p-artista').value;
+        const titulo = document.getElementById('p-titulo').value;
+        const precio = document.getElementById('p-precio').value;
+        const img = "/Imagenes/" + document.getElementById('p-img').value;
+        const desc = document.getElementById('p-desc').value;
+
+        const resultado = `"${id}": {
+    artista: "${artista}",
+    titulo: "${titulo}",
+    precio: "${precio}",
+    imagen: "${img}",
+    desc: "${desc}"
+},`;
+
+        const output = document.getElementById('code-output');
+        output.innerText = "COPIA ESTO EN TU JAVASCRIPT:\n\n" + resultado;
+        output.style.display = "block";
+    });
+}
+
+/* --- LÓGICA DE TIENDA (INDEX) --- */
+function pintarTienda() {
+    const grid = document.getElementById('contenedor-vinilos');
+    if (!grid) return;
+
+    let html = "";
+    for (let id in catalogo) {
+        const v = catalogo[id];
+        html += `
+            <article class="vinilo-card">
+                <div class="vinilo-image">
+                    <a href="producto.html?id=${id}">
+                        <img src="${v.imagen}" alt="${v.titulo}">
+                    </a>
+                </div>
+                <div class="vinilo-info">
+                    <span class="artista">${v.artista}</span>
+                    <span class="album">${v.titulo}</span>
+                    <span class="precio">${v.precio}</span>
+                </div>
+            </article>`;
+    }
+    grid.innerHTML = html;
+}
+
+/* --- LÓGICA DE PRODUCTO --- */
+function cargarDetalle() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const titleTag = document.getElementById('txt-titulo');
+
+    if (id && titleTag && catalogo[id]) {
+        const p = catalogo[id];
+        document.getElementById('txt-artista').innerText = p.artista;
+        document.getElementById('txt-titulo').innerText = p.titulo;
+        document.getElementById('txt-precio').innerText = p.precio;
+        document.getElementById('txt-descripcion').innerText = p.desc;
+        document.getElementById('main-img').src = p.imagen;
+    }
+}
+
+/* --- INICIALIZACIÓN --- */
+window.onload = () => {
+    pintarTienda();
+    cargarDetalle();
+};

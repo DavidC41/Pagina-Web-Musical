@@ -12,30 +12,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@900&family=Playfair+Display:ital,wght@1,900&family=Space+Mono:wght@700&family=Archivo+Black&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="Imagenes/favicon.png">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="icon" type="image/png" href="../Imagenes/favicon.png">
+    <link rel="stylesheet" href="/CSS/style.css">
 </head>
 <body>
-    <input type="checkbox" id="dyslexia-mode" class="hidden-checkbox">
-
     <header class="main-header" id="header">
         <div class="logo-container">
             <h1 class="brand-name">BIBERON</h1>
         </div>
+        
         <label for="dyslexia-mode" class="dyslexia-btn">
             Alternar Modo Dislexia
         </label>
+                
         <input type="checkbox" id="menu-toggle">
 
         <div class="header-actions">
             <button class="action-item" aria-label="Buscar">
-                <img src="Imagenes/lupa.png" alt="Buscar" class="nav-icon">
+                <img src="/Imagenes/lupa.png" alt="Buscar" class="nav-icon">
             </button>
             <button class="action-item" aria-label="Usuario">
-                <img src="Imagenes/usuario.png" alt="Buscar" class="nav-icon">
+                <img src="/Imagenes/usuario.png" alt="Buscar" class="nav-icon">
             </button>
             <button class="action-item" aria-label="Carro">
-                <img src="Imagenes/carrito.png" alt="Buscar" class="nav-icon">
+                <img src="/Imagenes/carrito.png" alt="Buscar" class="nav-icon">
             </button>
 
             <button class="action-menu" id="open-menu" aria-label="Abir menú">
@@ -48,19 +48,15 @@
         <nav id="side-menu" class="side-menu">
             <div class="menu-header">
                 <span class="menu-tittle">MENÚ</span>
-                <button class="close-menu" id="close-menu">CLOSE</button>
+                <button class="close-menu" id="close-menu">CERRAR</button>
             </div>
-    
             <div class="menu-content">
                 <ul class="nav-links">
                     <li>
                         <a href="#vinilos" data-text="Vinilos">VINILOS</a>
                     </li>
                     <li>
-                        <a href="#artistas" data-text="Artistas">ARTISTAS</a>
-                    </li>
-                    <li>
-                        <a href="#descubre" data-text="Emergentes">DESCUBRE</a>
+                        <a href="#artistas" data-text="Artistas">DESCUBRE</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +70,7 @@
         </section>
         <section class="section-content">
             <video autoplay muted loop playsinline class="bg-video">
-                <source src="Recursos/Turbulencias-video.mp4" type="video/mp4">
+                <source src="/Vídeos/Turbulencias-video.mp4" type="video/mp4">
             </video>
         </section>
         <section class="vinilos-grid" id="vinilos">
@@ -86,8 +82,8 @@
             <div class="grid-container">
                 <article class="vinilo-card">
                     <div class="vinilo-image">
-                        <a href="https://apparell.com/products/diego-900-la-espalda-del-sol-edicion-en-doble-vinilo?_pos=2&_psq=diego9&_ss=e&_v=1.0" class="vinilo-link">
-                            <img src="Imagenes/diego900-vinilo.png" alt="vinilo">
+                        <a href="/HTML producto/producto.html?id=diego900" class="vinilo-link">
+                            <img src="/Imagenes/diego900-vinilo.png" alt="vinilo">
                         </a>
                     </div>
                     <div class="vinilo-info">
@@ -98,8 +94,8 @@
                 </article>
                 <article class="vinilo-card">
                     <div class="vinilo-image">
-                        <a href="https://www.fnac.es/a1293004/My-Beautiful-Dark-Twisted-Fantasy-3-vinilos-Disco" class="vinilo-link">
-                            <img src="Imagenes/Kanye_West-vinilo.png" alt="vinilo">
+                        <a href="/HTML producto/producto.html?id=kanye-west" class="vinilo-link">
+                            <img src="/Imagenes/Kanye_West-vinilo.png" alt="vinilo">
                         </a>
                     </div>
                     <div class="vinilo-info">
@@ -111,7 +107,7 @@
                  <article class="vinilo-card">
                      <div class="vinilo-image">
                         <a href="https://www.fnac.es/a11324359/Carolina-Durante-Elige-tu-propia-aventura-Vinilo-Disco" class="vinilo-link">
-                            <img src="Imagenes/carolina_durante-vinilo.png" alt="vinilo">
+                            <img src="/Imagenes/carolina_durante-vinilo.png" alt="vinilo">
                         </a>
                      </div>
                      <div class="vinilo-info">
@@ -123,7 +119,7 @@
                   <article class="vinilo-card">
                      <div class="vinilo-image">
                         <a href="https://www.fnac.es/a7093154/Dr-Dre-2001-2-Vinilos-Disco" class="vinilo-link">
-                            <img src="Imagenes/dr_dre-vinilo.png" alt="vinilo">
+                            <img src="/Imagenes/dr_dre-vinilo.png" alt="vinilo">
                         </a>
                      </div>
                      <div class="vinilo-info">
@@ -140,11 +136,12 @@
         <p class="copyright">&copy; 2026 BIBERON. Todos los derechos reservados.</p>
         
         <nav class="footer-links">
-            <a href="Recursos/politicas_privacidad.pdf" target="_blank" class="footer-link">Políticas de Privacidad</a>
+            <a href="/Recursos/politicas_privacidad.pdf" target="_blank" class="footer-link">Políticas de Privacidad</a>
             <span class="separator">|</span>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=legoalcala41@gmail.com" target="_blank" class="footer-link contact-highlight">Contactar vía Gmail</a>
         </nav>
     </div>
     </footer>
+    <script src="/JavaScript/javaScript.js"></script>
 </body>
 </html>

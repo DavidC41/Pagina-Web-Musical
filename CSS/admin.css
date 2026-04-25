@@ -79,3 +79,26 @@
     white-space: pre-wrap;
     display: none;
 }
+
+/* Estilo para el mensaje de éxito */
+.success-message {
+    display: none; /* Se oculta por defecto */
+    background-color: rgba(121, 214, 22, 0.1);
+    color: #79d616;
+    border: 1px solid #79d616;
+    padding: 15px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animación para que aparezca suavemente */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

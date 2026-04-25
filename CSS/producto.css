@@ -1,0 +1,152 @@
+/* =========================================
+   ESTILOS ESPECÍFICOS PARA DETALLE DE PRODUCTO
+   ========================================= */
+
+body.product-view {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Ajuste del Header para que combine con el fondo blanco */
+.product-view .main-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.product-view .brand-name {
+    color: #000000 !important;
+}
+
+.product-view .line {
+    background-color: #000000 !important;
+}
+
+/* Contenedor principal */
+.product-main {
+    padding-top: 120px; /* Espacio para que el header no lo tape */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.product-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    gap: 80px;
+    padding-bottom: 80px;
+}
+
+/* Sección Imagen */
+.product-gallery {
+    flex: 1.2;
+    background-color: #f2f2f2; /* Fondo gris suave de la referencia */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    border-radius: 4px;
+}
+
+.badge-soldout {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background-color: #ff3b3b;
+    color: #ffffff;
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.product-gallery img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+}
+
+/* Sección Información */
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-label {
+    color: #555;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-title {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    color: #111;
+}
+
+.product-price {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.product-desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 50px;
+    max-width: 500px;
+}
+
+/* Botones de acción */
+.action-btns button {
+    width: 100%;
+    padding: 22px;
+    margin-bottom: 12px;
+    border: none;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: 0.3s ease;
+}
+
+.btn-status {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.btn-notify {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.btn-notify:hover {
+    background-color: #333;
+}
+
+/* Adaptación para móviles */
+@media (max-width: 900px) {
+    .product-container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 40px;
+    }
+    .product-title {
+        font-size: 3rem;
+    }
+    .product-gallery {
+        padding: 40px;
+    }
+}

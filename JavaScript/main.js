@@ -114,22 +114,31 @@ function verificarPassword() {
 async function guardarEnGithub() {
     const token = document.getElementById('github-token').value;
     const id = document.getElementById('p-id').value;
-    if (!id) return alert("Falta el ID");
+    const btn = document.getElementById('btn-guardar-github');
+
+    if (!id || !token) return alert("Por favor, introduce el ID y el Token.");
+
+    // Bloqueamos el botón y damos feedback visual
+    const textoOriginal = btn.innerText;
+    btn.innerText = "SUBIENDO... ESPERA";
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
 
     const nuevoVinilo = {
         artista: document.getElementById('p-artista').value,
         titulo: document.getElementById('p-titulo').value,
         precio: document.getElementById('p-precio').value,
-        imagen: "Imagenes/" + document.getElementById('p-img').value,
+        imagen: "Imagenes/" + (document.getElementById('p-img').value || "default.png"),
         desc: document.getElementById('p-desc').value,
         agotado: false
     };
 
-    // La API de GitHub SIEMPRE usa la ruta desde la raíz sin "../"
     const urlApi = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${JSON_FOLDER}`;
 
     try {
-        const resGet = await fetch(urlApi, { headers: { 'Authorization': `token ${token}` }});
+        const resGet = await fetch(urlApi, { 
+            headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' }
+        });
         const dataGet = await resGet.json();
         
         let contenido = JSON.parse(atob(dataGet.content));
@@ -139,17 +148,40 @@ async function guardarEnGithub() {
             method: 'PUT',
             headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                message: `Nuevo vinilo: ${id}`,
+                message: `✅ Admin: Añadido vinilo ${id}`,
                 content: btoa(unescape(encodeURIComponent(JSON.stringify(contenido, null, 2)))),
                 sha: dataGet.sha
             })
         });
 
-        if (resPut.ok) { alert("¡Actualizado!"); location.reload(); }
-    } catch (e) { alert("Error al subir"); }
+        if (resPut.ok) {
+            alert("¡VINILO INTRODUCIDO CORRECTAMENTE! 🚀");
+            
+            // Limpiamos el formulario
+            document.getElementById('p-id').value = "";
+            document.getElementById('p-artista').value = "";
+            document.getElementById('p-titulo').value = "";
+            document.getElementById('p-precio').value = "";
+            document.getElementById('p-img').value = "";
+            document.getElementById('p-desc').value = "";
+            
+        } else {
+            alert("Error al subir. Revisa los permisos de tu Token.");
+        }
+    } catch (e) {
+        alert("Error de conexión con GitHub.");
+        console.error(e);
+    } finally {
+        // Restauramos el botón
+        btn.innerText = textoOriginal;
+        btn.disabled = false;
+        btn.style.opacity = "1";
+    }
 }
 
-// Escuchar el clic del botón de guardado (si existe en la página)
+// Escuchador para el botón de admin
 document.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'btn-guardar-github') guardarEnGithub();
+    if (e.target && e.target.id === 'btn-guardar-github') {
+        guardarEnGithub();
+    }
 });

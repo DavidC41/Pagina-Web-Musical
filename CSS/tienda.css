@@ -6,8 +6,69 @@
 body {
     background-color: #000; /* Fondo negro puro */
     margin: 0;
+    color: #fff;
 }
 
+/* HEADER ESTILO INDEX */
+.main-header {
+    background-color: #000 !important; /* Fondo negro obligatorio */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #111;
+    box-sizing: border-box;
+}
+
+/* Marca en Verde BIBERON */
+.main-header .brand-name {
+    color: #79d616 !important;
+    font-family: 'Archivo Black', sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Iconos de navegación en Verde */
+.main-header .nav-icon {
+    width: 24px;
+    height: 24px;
+    /* Filtro para convertir iconos (negros o blancos) al verde #79d616 */
+    filter: invert(72%) sepia(55%) saturate(541%) hue-rotate(46deg) brightness(95%) contrast(89%);
+    transition: transform 0.3s ease;
+}
+
+.main-header .nav-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Líneas del menú hamburguesa */
+.main-header .action-menu .line {
+    background-color: #79d616 !important;
+}
+
+/* Botón Modo Dislexia estilo Index */
+.dyslexia-btn {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: transparent;
+    color: #79d616 !important;
+    border: 1px solid #79d616;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.dyslexia-btn:hover {
+    background-color: #79d616;
+    color: #000 !important;
+}
+
+/* CONTENEDOR DE LA TIENDA */
 .container {
     padding: 140px 5% 80px 5%;
     min-height: 100vh;
@@ -21,11 +82,11 @@ body {
     width: 100%;
 }
 
-/* Títulos arriba del todo (section-header) */
+/* Títulos (section-header) */
 .section-header {
     width: 100%;
     margin-bottom: 60px;
-    border-left: 4px solid #79d616; /* Detalle verde lateral */
+    border-left: 4px solid #79d616; 
     padding-left: 20px;
     box-sizing: border-box;
 }
@@ -40,16 +101,15 @@ body {
     margin: 0;
 }
 
-/* EL CONTENEDOR DE LOS VINILOS (Grid real) */
+/* GRID DE PRODUCTOS */
 .grid-container {
     display: grid;
-    /* Esto crea columnas automáticas que se llenan de izquierda a derecha */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 50px 30px;
     width: 100%;
 }
 
-/* TARJETA DE VINILO (Inyectada por JS) */
+/* TARJETA DE VINILO */
 .vinilo-card {
     position: relative;
     transition: all 0.4s ease;
@@ -57,12 +117,11 @@ body {
     flex-direction: column;
 }
 
-/* Imagen cuadrada */
 .vinilo-image {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background-color: #e4d0d0;
+    background-color: #111;
     border: 1px solid #222; 
     margin-bottom: 20px;
 }
@@ -75,17 +134,12 @@ body {
     transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* HOVER */
 .vinilo-card:hover .vinilo-image img {
     transform: scale(1.05);
     filter: grayscale(0%);
 }
 
-.vinilo-card:hover {
-    transform: translateY(-5px);
-}
-
-/* INFO DE TEXTOS */
+/* INFO TEXTOS */
 .vinilo-info {
     display: flex;
     flex-direction: column;
@@ -106,8 +160,6 @@ body {
     color: #fff;
     font-weight: 500;
     margin-bottom: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .vinilo-info .precio {
@@ -116,51 +168,20 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
-        gap: 30px 15px;
-    }
-    
-    .section-title {
-        font-size: 2.2rem;
-    }
-}
-/* 1. Ocultar el checkbox */
+/* MODO DISLEXIA (Lógica del final) */
 .hidden-checkbox {
     display: none;
 }
 
-/* 2. Estilo del botón (con vuestro toque moderno) */
-.dyslexia-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Rubik', sans-serif;
-    transition: all 0.3s ease; /* Transición suave */
-    border: 2px solid transparent;
-}
-
-.dyslexia-btn:hover {
-    background-color: #333;
-    transform: scale(1.05);
-}
-
-/* 3. El truco: Cuando el checkbox esté marcado, cambia el contenido */
 #dyslexia-mode:checked ~ .container,
-#dyslexia-mode:checked ~ .main-header,
-#dyslexia-mode:checked ~ .main-footer {
+#dyslexia-mode:checked ~ .main-header {
     font-family: 'OpenDyslexic', Arial, sans-serif !important;
-    letter-spacing: 0.1em;
-    word-spacing: 0.2em;
 }
 
-/* Opcional: Cambiar estilo del botón cuando esté activo */
-#dyslexia-mode:checked ~ .dyslexia-btn {
-    background-color: #fff;
-    color: #000;
-    border-color: #000;
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 15px;
+    }
 }

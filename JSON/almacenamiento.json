@@ -12,13 +12,5 @@
     "precio": "49,99Ã¢ÂÂ¬",
     "imagen": "../Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
-  },
-  "hloa": {
-    "artista": "biberon",
-    "titulo": "si",
-    "precio": "9,99",
-    "imagen": "../Imagenes/funcionaolloro.png",
-    "desc": "fsdgfsdufyise",
-    "agotado": false
   }
 }

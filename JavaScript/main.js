@@ -1,227 +1,155 @@
- // Seleccionamos los elementos
-    const openMenuBtn = document.querySelector('.action-menu'); // El botón con las rayitas
-    const sideMenu = document.querySelector('.side-menu');
-    const navLinks = document.querySelectorAll('.nav-links li');
-
-    // 1. Añadimos un índice a cada enlace para la animación de cascada (Apparell style)
-    navLinks.forEach((link, index) => {
-        link.style.setProperty('--i', index + 1);
-    });
-
-    // 2. Función para abrir el menú
-    openMenuBtn.addEventListener('click', () => {
-        sideMenu.classList.add('is-active');
-        document.body.style.overflow = 'hidden'; // Bloquea el scroll de la web de fondo
-    });
-
-    // 3. Función para cerrar el menú
-    // (He añadido un detector para que si haces clic en un enlace, el menú se cierre)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('is-active');
-            document.body.style.overflow = ''; // Devuelve el scroll
-        });
-    });
-
-    // 4. Si quieres un botón de cerrar específico (la X), asegúrate de que tenga la clase .close-menu
-    const closeMenuBtn = document.querySelector('.close-menu');
-    if (closeMenuBtn) {
-        closeMenuBtn.addEventListener('click', () => {
-            sideMenu.classList.remove('is-active');
-            document.body.style.overflow = '';
-        });
-    }   
-
-    /* =========================================
-   2. BASE DE DATOS DE VINILOS
+/* =========================================
+   1. CONFIGURACIÓN GLOBAL
    ========================================= */
+const OWNER = 'DavidC41'; 
+const REPO = 'Pagina-Web-Musical';
+const JSON_FOLDER = 'JSON/almacenamiento.json';
 
-const catalogo = {
-    "diego900": {
-        artista: "Diego 900",
-        titulo: "La Espalda del Sol",
-        precio: "30,00 €",
-        imagen: "/Imagenes/diego900-vinilo.png",
-        desc: "Edición limitada en formato doble vinilo. Contiene 2 vinilos de 180gr y pósters exclusivos.",
-        agotado: true
+// Ruta inteligente para el fetch (detecta si estamos en /HTML/ o raíz)
+let FETCH_PATH = window.location.pathname.includes('/HTML/') 
+    ? `../${JSON_FOLDER}` 
+    : JSON_FOLDER;
 
-    },
-    "kanye-west": {
-        artista: "Kanye West",
-        titulo: "My Beautiful Dark Twisted Fantasy",
-        precio: "49,99 €",
-        imagen: "/Imagenes/Kanye_West-vinilo.png",
-        desc: "Edición de lujo con arte original y triple vinilo de alta fidelidad.",
-        agotado: false
-    }
-    // Puedes seguir añadiendo más aquí...
-};
+let catalogo = {}; // Base de datos temporal
 
 /* =========================================
-   3. LÓGICA DINÁMICA (Solo para producto.html)
+   2. LÓGICA DEL MENÚ (Tu diseño original)
    ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const openMenuBtn = document.querySelector('.action-menu');
+    const sideMenu = document.querySelector('.side-menu');
+    const navLinks = document.querySelectorAll('.nav-links li');
+    const closeMenuBtn = document.querySelector('.close-menu');
 
-function cargarDatosProducto() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id'); // Coge el "diego900" de la URL
-    const producto = catalogo[id];
-
-    // Comprobamos si estamos en la página de producto buscando un elemento que solo exista ahí
-
-    const tituloElemento = document.getElementById('txt-titulo');
-
-    if (producto && tituloElemento) {
-        document.getElementById('txt-artista').innerText = producto.artista;
-        document.getElementById('txt-titulo').innerText = producto.titulo;
-        document.getElementById('txt-precio').innerText = producto.precio;
-        document.getElementById('txt-descripcion').innerText = producto.desc;
-        document.getElementById('main-img').src = producto.imagen;
-
-
-        // Si el producto NO está agotado, cambiamos el botón gris por el verde
-
-        if (!producto.agotado) {
-            document.getElementById('status-badge').style.display = 'none';
-            const btnPrincipal = document.getElementById('btn-principal');
-            const btnSecundario = document.getElementById('btn-secondary');
-
-            btnPrincipal.innerText = "AÑADIR AL CARRITO";
-            btnPrincipal.style.backgroundColor = "#79d616"; // Verde BIBERON
-            btnPrincipal.style.color = "#000";
-            btnPrincipal.style.cursor = "pointer";
-
-            
-            if (btnSecundario) btnSecundario.style.display = 'none'; // Ocultamos el "Avísame"
-
-        }
-
+    if (openMenuBtn && sideMenu) {
+        navLinks.forEach((link, index) => link.style.setProperty('--i', index + 1));
+        openMenuBtn.addEventListener('click', () => {
+            sideMenu.classList.add('is-active');
+            document.body.style.overflow = 'hidden';
+        });
+        const cerrar = () => {
+            sideMenu.classList.remove('is-active');
+            document.body.style.overflow = '';
+        };
+        if (closeMenuBtn) closeMenuBtn.addEventListener('click', cerrar);
+        navLinks.forEach(link => link.addEventListener('click', cerrar));
     }
+    
+    // Iniciar carga de datos al entrar
+    cargarBaseDeDatos();
+});
 
+/* =========================================
+   3. TIENDA Y PRODUCTO (Leer Datos)
+   ========================================= */
+async function cargarBaseDeDatos() {
+    try {
+        const respuesta = await fetch(`${FETCH_PATH}?v=${Math.random()}`);
+        if (!respuesta.ok) return;
+        catalogo = await respuesta.json();
+
+        // Si existe el contenedor de vinilos, pintamos la tienda
+        if (document.getElementById('contenedor-vinilos')) pintarTienda();
+        
+        // Si existe el título del producto, cargamos detalle
+        if (document.getElementById('txt-titulo')) cargarDatosProducto();
+    } catch (e) { console.error("Error cargando JSON:", e); }
 }
-
-
-
-// Ejecutamos la función de carga al iniciar
-
-window.addEventListener('load', cargarDatosProducto);
-
-
-/* --- LÓGICA DE ADMIN --- */
-
-function verificarPassword() {
-    const pass = document.getElementById('admin-pass').value;
-
-    // Pon aquí la contraseña que quieras para tu trabajo
-
-    if(pass === "BIBERON2026") {
-        document.getElementById('login-section').style.display = "none";
-        document.getElementById('form-section').style.display = "block";
-    } else {
-        alert("Acceso denegado");
-
-    }
-
-}
-
-const generateBtn = document.getElementById('generate-btn');
-
-if (generateBtn) {
-
-    generateBtn.addEventListener('click', () => {
-        const id = document.getElementById('p-id').value;
-        const artista = document.getElementById('p-artista').value;
-        const titulo = document.getElementById('p-titulo').value;
-        const precio = document.getElementById('p-precio').value;
-        const img = "/Imagenes/" + document.getElementById('p-img').value;
-        const desc = document.getElementById('p-desc').value;
-
-        const resultado = `"${id}": {
-
-    artista: "${artista}",
-    titulo: "${titulo}",
-    precio: "${precio}",
-    imagen: "${img}",
-    desc: "${desc}"
-
-},`;
-
-
-        const output = document.getElementById('code-output');
-        output.innerText = "COPIA ESTO EN TU JAVASCRIPT:\n\n" + resultado;
-        output.style.display = "block";
-
-    });
-
-}
-
-
-
-/* --- LÓGICA DE TIENDA (INDEX) --- */
 
 function pintarTienda() {
-    
     const grid = document.getElementById('contenedor-vinilos');
-    if (!grid) return;
-
-
-
     let html = "";
     for (let id in catalogo) {
         const v = catalogo[id];
         html += `
-
             <article class="vinilo-card">
                 <div class="vinilo-image">
-                    <a href="producto.html?id=${id}">
-                        <img src="${v.imagen}" alt="${v.titulo}">
-
-                    </a>
+                    <a href="producto.html?id=${id}"><img src="${v.imagen}" alt="${v.titulo}"></a>
                 </div>
                 <div class="vinilo-info">
                     <span class="artista">${v.artista}</span>
                     <span class="album">${v.titulo}</span>
                     <span class="precio">${v.precio}</span>
-
                 </div>
             </article>`;
-
     }
-
     grid.innerHTML = html;
-
 }
 
-
-
-/* --- LÓGICA DE PRODUCTO --- */
-
-function cargarDetalle() {
-
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const titleTag = document.getElementById('txt-titulo');
-
-
-
-    if (id && titleTag && catalogo[id]) {
-
-        const p = catalogo[id];
+function cargarDatosProducto() {
+    const id = new URLSearchParams(window.location.search).get('id');
+    const p = catalogo[id];
+    if (p) {
         document.getElementById('txt-artista').innerText = p.artista;
         document.getElementById('txt-titulo').innerText = p.titulo;
         document.getElementById('txt-precio').innerText = p.precio;
         document.getElementById('txt-descripcion').innerText = p.desc;
         document.getElementById('main-img').src = p.imagen;
-
+        
+        if (!p.agotado) {
+            const btnP = document.getElementById('btn-principal');
+            if (btnP) {
+                btnP.innerText = "AÑADIR AL CARRITO";
+                btnP.style.backgroundColor = "#79d616";
+                btnP.style.color = "#000";
+            }
+            const btnS = document.getElementById('btn-secondary');
+            if (btnS) btnS.style.display = 'none';
+        }
     }
-
 }
 
+/* =========================================
+   4. PANEL ADMIN (Escribir en GitHub)
+   ========================================= */
+function verificarPassword() {
+    const pass = document.getElementById('admin-pass').value;
+    const token = document.getElementById('github-token').value;
+    if (pass === "BIBERON2026" && token) {
+        document.getElementById('login-section').style.display = "none";
+        document.getElementById('form-section').style.display = "block";
+    } else { alert("Datos incorrectos"); }
+}
 
-/* --- INICIALIZACIÓN --- */
+async function guardarEnGithub() {
+    const token = document.getElementById('github-token').value;
+    const id = document.getElementById('p-id').value;
+    if (!id) return alert("Falta el ID");
 
-window.onload = () => {
+    const nuevoVinilo = {
+        artista: document.getElementById('p-artista').value,
+        titulo: document.getElementById('p-titulo').value,
+        precio: document.getElementById('p-precio').value,
+        imagen: "Imagenes/" + document.getElementById('p-img').value,
+        desc: document.getElementById('p-desc').value,
+        agotado: false
+    };
 
-    pintarTienda();
-    cargarDetalle();
+    // La API de GitHub SIEMPRE usa la ruta desde la raíz sin "../"
+    const urlApi = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${JSON_FOLDER}`;
 
-};
+    try {
+        const resGet = await fetch(urlApi, { headers: { 'Authorization': `token ${token}` }});
+        const dataGet = await resGet.json();
+        
+        let contenido = JSON.parse(atob(dataGet.content));
+        contenido[id] = nuevoVinilo;
+
+        const resPut = await fetch(urlApi, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: `Nuevo vinilo: ${id}`,
+                content: btoa(unescape(encodeURIComponent(JSON.stringify(contenido, null, 2)))),
+                sha: dataGet.sha
+            })
+        });
+
+        if (resPut.ok) { alert("¡Actualizado!"); location.reload(); }
+    } catch (e) { alert("Error al subir"); }
+}
+
+// Escuchar el clic del botón de guardado (si existe en la página)
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'btn-guardar-github') guardarEnGithub();
+});

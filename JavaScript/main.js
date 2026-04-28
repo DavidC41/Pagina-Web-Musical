@@ -13,7 +13,7 @@ let FETCH_PATH = window.location.pathname.includes('/HTML/')
 let catalogo = {}; // Base de datos temporal
 
 /* =========================================
-   2. LÓGICA DEL MENÚ (Tu diseño original)
+   2. LÓGICA DEL MENÚ
    ========================================= */
 document.addEventListener('DOMContentLoaded', () => {
     const openMenuBtn = document.querySelector('.action-menu');
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => link.addEventListener('click', cerrar));
     }
     
-    // Iniciar carga de datos al entrar
     cargarBaseDeDatos();
 });
 
@@ -48,10 +47,7 @@ async function cargarBaseDeDatos() {
         if (!respuesta.ok) return;
         catalogo = await respuesta.json();
 
-        // Si existe el contenedor de vinilos, pintamos la tienda
         if (document.getElementById('contenedor-vinilos')) pintarTienda();
-        
-        // Si existe el título del producto, cargamos detalle
         if (document.getElementById('txt-titulo')) cargarDatosProducto();
     } catch (e) { console.error("Error cargando JSON:", e); }
 }
@@ -100,8 +96,17 @@ function cargarDatosProducto() {
 }
 
 /* =========================================
-   4. PANEL ADMIN (Escribir en GitHub)
+   4. PANEL ADMIN (Opción B: Subida Real)
    ========================================= */
+
+// Función para convertir archivo a Base64
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = error => reject(error);
+});
+
 function verificarPassword() {
     const pass = document.getElementById('admin-pass').value;
     const token = document.getElementById('github-token').value;
@@ -114,35 +119,50 @@ function verificarPassword() {
 async function guardarEnGithub() {
     const token = document.getElementById('github-token').value;
     const id = document.getElementById('p-id').value;
+    const fileInput = document.getElementById('p-img-file'); // ID actualizado
     const btn = document.getElementById('btn-guardar-github');
 
-    if (!id || !token) return alert("Por favor, introduce el ID y el Token.");
+    if (!id || !token || !fileInput.files[0]) {
+        return alert("Por favor, rellena todos los campos y selecciona una imagen.");
+    }
 
-    // Bloqueamos el botón y damos feedback visual
+    const archivo = fileInput.files[0];
+    const nombreImagen = archivo.name;
     const textoOriginal = btn.innerText;
-    btn.innerText = "SUBIENDO... ESPERA";
+
+    btn.innerText = "SUBIENDO ARCHIVOS...";
     btn.disabled = true;
     btn.style.opacity = "0.5";
 
-    const nuevoVinilo = {
-        artista: document.getElementById('p-artista').value,
-        titulo: document.getElementById('p-titulo').value,
-        precio: document.getElementById('p-precio').value,
-        imagen: "Imagenes/" + (document.getElementById('p-img').value || "default.png"),
-        desc: document.getElementById('p-desc').value,
-        agotado: false
-    };
-
-    const urlApi = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${JSON_FOLDER}`;
-
     try {
-        const resGet = await fetch(urlApi, { 
-            headers: { 'Authorization': `token ${token}`}
+        // PASO 1: SUBIR LA IMAGEN A GITHUB (Base64)
+        const imageBase64 = await toBase64(archivo);
+        const urlImg = `https://api.github.com/repos/${OWNER}/${REPO}/contents/Imagenes/${nombreImagen}`;
+        
+        await fetch(urlImg, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: `📸 Admin: Nueva imagen ${nombreImagen}`,
+                content: imageBase64
+            })
         });
+
+        // PASO 2: ACTUALIZAR EL JSON
+        const urlApi = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${JSON_FOLDER}`;
+        const resGet = await fetch(urlApi, { headers: { 'Authorization': `token ${token}` } });
         const dataGet = await resGet.json();
         
         let contenido = JSON.parse(atob(dataGet.content));
-        contenido[id] = nuevoVinilo;
+        
+        contenido[id] = {
+            artista: document.getElementById('p-artista').value,
+            titulo: document.getElementById('p-titulo').value,
+            precio: document.getElementById('p-precio').value,
+            imagen: "Imagenes/" + nombreImagen,
+            desc: document.getElementById('p-desc').value,
+            agotado: false
+        };
 
         const resPut = await fetch(urlApi, {
             method: 'PUT',
@@ -155,24 +175,16 @@ async function guardarEnGithub() {
         });
 
         if (resPut.ok) {
-            alert("¡VINILO INTRODUCIDO CORRECTAMENTE! 🚀");
-            
-            // Limpiamos el formulario
-            document.getElementById('p-id').value = "";
-            document.getElementById('p-artista').value = "";
-            document.getElementById('p-titulo').value = "";
-            document.getElementById('p-precio').value = "";
-            document.getElementById('p-img').value = "";
-            document.getElementById('p-desc').value = "";
-            
+            alert("¡VINILO E IMAGEN SUBIDOS CON ÉXITO! 🚀");
+            location.reload(); 
         } else {
-            alert("Error al subir. Revisa los permisos de tu Token.");
+            alert("Error al actualizar el JSON.");
         }
+
     } catch (e) {
-        alert("Error de conexión con GitHub.");
+        alert("Error de conexión. Revisa el token o la consola.");
         console.error(e);
     } finally {
-        // Restauramos el botón
         btn.innerText = textoOriginal;
         btn.disabled = false;
         btn.style.opacity = "1";
@@ -184,12 +196,4 @@ document.addEventListener('click', (e) => {
     if (e.target && e.target.id === 'btn-guardar-github') {
         guardarEnGithub();
     }
-});
-
-// Función para convertir la imagen elegida en texto Base64 para GitHub
-const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = error => reject(error);
 });

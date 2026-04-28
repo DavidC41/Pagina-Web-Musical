@@ -2,14 +2,14 @@
   "diego900": {
     "artista": "Diego900",
     "titulo": "La espalda del sol",
-    "precio": "25,99ÃÂ¢ÃÂÃÂ¬",
+    "precio": "25,99€",
     "imagen": "../Imagenes/diego900-vinilo.png",
-    "desc": "EdiciÃÂÃÂ³n limitada."
+    "desc": "Edición limitada."
   },
   "kanye-west": {
     "artista": "Kanye West",
-    "titulo": "MBDTF",
-    "precio": "49,99ÃÂ¢ÃÂÃÂ¬",
+    "titulo": "My Beautiful Dark Twisted Fantasy",
+    "precio": "49,99€",
     "imagen": "../Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
   },

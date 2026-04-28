@@ -137,7 +137,7 @@ async function guardarEnGithub() {
 
     try {
         const resGet = await fetch(urlApi, { 
-            headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' }
+            headers: { 'Authorization': `token ${token}`}
         });
         const dataGet = await resGet.json();
         

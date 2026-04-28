@@ -3,7 +3,7 @@
    ========================================= */
 const OWNER = 'DavidC41'; 
 const REPO = 'Pagina-Web-Musical';
-const JSON_FOLDER = 'JSON/almacenamiento.json';
+const JSON_FOLDER = '../JSON/almacenamiento.json';
 
 // Ruta inteligente para el fetch (detecta si estamos en /HTML/ o raíz)
 let FETCH_PATH = window.location.pathname.includes('/HTML/') 

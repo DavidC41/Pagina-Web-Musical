@@ -1,0 +1,113 @@
+/* =========================================
+   ESTILOS TIENDA - ESTÉTICA BIBERON
+   ========================================= */
+
+/* Fondo y contenedor */
+.catalog-page {
+    padding: 140px 5% 80px 5%; /* Más espacio superior para lucir el header */
+    background-color: #000; /* Fondo negro puro como tu marca */
+    min-height: 100vh;
+}
+
+/* Títulos con tu estilo */
+.catalog-header {
+    margin-bottom: 60px;
+    border-left: 4px solid #79d616; /* Detalle verde lateral */
+    padding-left: 20px;
+}
+
+.catalog-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Tamaño fluido */
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 0.9;
+    margin: 0;
+}
+
+.catalog-header p {
+    color: #79d616; /* Texto en tu verde */
+    font-family: monospace; /* Aire técnico/urbano */
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* LA REJILLA (GRID) */
+.vinilos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px 30px;
+}
+
+/* TARJETA DE VINILO */
+.vinilo-card {
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+/* Efecto imagen "Apparell style" */
+.vinilo-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #111; /* Gris casi negro para carga */
+    border: 1px solid #222; /* Borde sutil */
+    margin-bottom: 20px;
+}
+
+.vinilo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%); /* Un toque desaturado para que el verde destaque */
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* HOVER EFECTO BIBERON */
+.vinilo-card:hover .vinilo-image img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.vinilo-card:hover {
+    transform: translateY(-5px);
+}
+
+/* TEXTOS DE LA TARJETA */
+.vinilo-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.vinilo-info .artista {
+    font-size: 0.75rem;
+    color: #79d616; /* Verde BIBERON */
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.vinilo-info .album {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si el título es muy largo, pone "..." */
+}
+
+.vinilo-info .precio {
+    font-size: 1rem;
+    color: #666; /* Gris para no quitar protagonismo al título */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .vinilos-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en móvil para que parezca Instagram */
+        gap: 30px 15px;
+    }
+}

@@ -2,25 +2,36 @@
    ESTILOS TIENDA - ESTÉTICA BIBERON
    ========================================= */
 
-/* Fondo y contenedor */
-.catalog-page {
-    padding: 140px 5% 80px 5%; 
-    background-color: #000; 
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column; /* Asegura que el header vaya arriba y el grid abajo */
+/* Fondo y contenedor principal */
+body {
+    background-color: #000; /* Fondo negro puro */
+    margin: 0;
 }
 
-/* Títulos arriba del todo */
-.catalog-header {
-    width: 100%; /* Ocupa todo el ancho superior */
+.container {
+    padding: 140px 5% 80px 5%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Sección que envuelve título y productos */
+.vinilos-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Títulos arriba del todo (section-header) */
+.section-header {
+    width: 100%;
     margin-bottom: 60px;
-    border-left: 4px solid #79d616; 
+    border-left: 4px solid #79d616; /* Detalle verde lateral */
     padding-left: 20px;
     box-sizing: border-box;
 }
 
-.catalog-header h1 {
+.section-title {
+    font-family: 'Archivo Black', sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem); 
     color: #fff;
     text-transform: uppercase;
@@ -29,15 +40,8 @@
     margin: 0;
 }
 
-.catalog-header p {
-    color: #79d616; 
-    font-family: monospace; 
-    text-transform: uppercase;
-    margin-top: 10px;
-}
-
-/* LA REJILLA (Alineada de izquierda a derecha) */
-.vinilos-grid {
+/* EL CONTENEDOR DE LOS VINILOS (Grid real) */
+.grid-container {
     display: grid;
     /* Esto crea columnas automáticas que se llenan de izquierda a derecha */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -45,7 +49,7 @@
     width: 100%;
 }
 
-/* TARJETA DE VINILO */
+/* TARJETA DE VINILO (Inyectada por JS) */
 .vinilo-card {
     position: relative;
     transition: all 0.4s ease;
@@ -77,11 +81,15 @@
     filter: grayscale(0%);
 }
 
-/* INFO */
+.vinilo-card:hover {
+    transform: translateY(-5px);
+}
+
+/* INFO DE TEXTOS */
 .vinilo-info {
     display: flex;
     flex-direction: column;
-    text-align: left; /* Alinea los textos a la izquierda */
+    text-align: left;
 }
 
 .vinilo-info .artista {
@@ -98,8 +106,8 @@
     color: #fff;
     font-weight: 500;
     margin-bottom: 8px;
-    /* Eliminamos el white-space: nowrap para que si el nombre es largo baje de línea 
-       y no rompa la rejilla, o mantenlo si prefieres una sola línea */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .vinilo-info .precio {
@@ -110,12 +118,12 @@
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
-    .vinilos-grid {
+    .grid-container {
         grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
         gap: 30px 15px;
     }
     
-    .catalog-header h1 {
+    .section-title {
         font-size: 2.2rem;
     }
 }

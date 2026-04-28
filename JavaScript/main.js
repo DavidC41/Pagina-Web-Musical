@@ -159,7 +159,7 @@ async function guardarEnGithub() {
             artista: document.getElementById('p-artista').value,
             titulo: document.getElementById('p-titulo').value,
             precio: document.getElementById('p-precio').value,
-            imagen: "Imagenes/" + nombreImagen,
+            imagen: "../Imagenes/" + nombreImagen,
             desc: document.getElementById('p-desc').value,
             agotado: false
         };

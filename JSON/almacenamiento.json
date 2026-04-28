@@ -17,7 +17,7 @@
     "artista": "Carolina Durante",
     "titulo": "Elige Tu Propia Aventura",
     "precio": "19,99€",
-    "imagen": "Imagenes/carolina_durante-vinilo.png",
+    "imagen": "../Imagenes/carolina_durante-vinilo.png",
     "desc": "Victor te quiero",
     "agotado": false
   }

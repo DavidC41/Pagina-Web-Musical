@@ -185,3 +185,11 @@ document.addEventListener('click', (e) => {
         guardarEnGithub();
     }
 });
+
+// Función para convertir la imagen elegida en texto Base64 para GitHub
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = error => reject(error);
+});

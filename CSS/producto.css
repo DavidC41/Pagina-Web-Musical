@@ -150,3 +150,40 @@ body.product-view {
         padding: 40px;
     }
 }
+/* 1. Ocultar el checkbox */
+.hidden-checkbox {
+    display: none;
+}
+
+/* 2. Estilo del botón (con vuestro toque moderno) */
+.dyslexia-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.3s ease; /* Transición suave */
+    border: 2px solid transparent;
+}
+
+.dyslexia-btn:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+/* 3. El truco: Cuando el checkbox esté marcado, cambia el contenido */
+#dyslexia-mode:checked ~ .container,
+#dyslexia-mode:checked ~ .main-header,
+#dyslexia-mode:checked ~ .main-footer {
+    font-family: 'OpenDyslexic', Arial, sans-serif !important;
+    letter-spacing: 0.1em;
+    word-spacing: 0.2em;
+}
+
+/* Opcional: Cambiar estilo del botón cuando esté activo */
+#dyslexia-mode:checked ~ .dyslexia-btn {
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+}

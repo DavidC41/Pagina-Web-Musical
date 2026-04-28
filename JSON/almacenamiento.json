@@ -3,21 +3,21 @@
     "artista": "Diego900",
     "titulo": "La espalda del sol",
     "precio": "25,99Ã¢ÂÂ¬",
-    "imagen": "Imagenes/diego900-vinilo.png",
+    "imagen": "../Imagenes/diego900-vinilo.png",
     "desc": "EdiciÃÂ³n limitada."
   },
   "kanye-west": {
     "artista": "Kanye West",
     "titulo": "MBDTF",
     "precio": "49,99Ã¢ÂÂ¬",
-    "imagen": "Imagenes/Kanye_West-vinilo.png",
+    "imagen": "../Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
   },
   "hloa": {
     "artista": "biberon",
     "titulo": "si",
     "precio": "9,99",
-    "imagen": "Imagenes/funcionaolloro.png",
+    "imagen": "../Imagenes/funcionaolloro.png",
     "desc": "fsdgfsdufyise",
     "agotado": false
   }

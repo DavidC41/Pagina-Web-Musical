@@ -1,11 +1,13 @@
-/* --- MISMA CONFIGURACIÓN --- */
+/* --- CONFIGURACIÓN --- */
 const OWNER = 'DavidC41'; 
 const REPO = 'Pagina-Web-Musical';
-const DATA_PATH = '../JSON/almacenamiento.json';
+// IMPORTANTE: Para GitHub API, la ruta empieza desde la raíz, sin "../"
+const DATA_PATH = 'JSON/almacenamiento.json'; 
 
+// 1. Lógica de Login
 function verificarPassword() {
     const pass = document.getElementById('admin-pass').value;
-    const token = document.getElementById('github-token').value; // Necesitas este input en el HTML
+    const token = document.getElementById('github-token').value;
 
     if(pass === "BIBERON2026" && token) {
         document.getElementById('login-section').style.display = "none";
@@ -15,10 +17,13 @@ function verificarPassword() {
     }
 }
 
+// 2. Lógica de Guardar
 async function guardarEnGithub() {
     const token = document.getElementById('github-token').value;
     const id = document.getElementById('p-id').value;
     
+    if(!id) return alert("Escribe un ID para el vinilo");
+
     const nuevoVinilo = {
         artista: document.getElementById('p-artista').value,
         titulo: document.getElementById('p-titulo').value,
@@ -31,15 +36,19 @@ async function guardarEnGithub() {
     const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${DATA_PATH}`;
 
     try {
-        // 1. Obtener el archivo actual y su SHA
-        const resGet = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
-        const dataGet = await resGet.json();
+        const resGet = await fetch(url, { 
+            headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } 
+        });
         
-        // 2. Decodificar y actualizar
+        if (!resGet.ok) {
+            alert("No se encontró el archivo JSON. Revisa la ruta en el repo.");
+            return;
+        }
+
+        const dataGet = await resGet.json();
         let contenido = JSON.parse(atob(dataGet.content));
         contenido[id] = nuevoVinilo;
 
-        // 3. Subir de nuevo a GitHub
         const resPut = await fetch(url, {
             method: 'PUT',
             headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
@@ -53,12 +62,19 @@ async function guardarEnGithub() {
         if (resPut.ok) {
             alert("¡Web actualizada con éxito!");
             location.reload();
+        } else {
+            alert("Error al subir. Revisa permisos del Token.");
         }
     } catch (e) {
-        alert("Error al conectar con GitHub.");
+        console.error(e);
+        alert("Error crítico al conectar con GitHub.");
     }
 }
 
-// Asignamos la función al botón del admin
-const btnGuardar = document.getElementById('btn-guardar-github');
-if(btnGuardar) btnGuardar.onclick = guardarEnGithub;
+// 3. Asignación del botón (Esperando a que el HTML exista)
+document.addEventListener('DOMContentLoaded', () => {
+    const btnGuardar = document.getElementById('btn-guardar-github');
+    if(btnGuardar) {
+        btnGuardar.onclick = guardarEnGithub;
+    }
+});

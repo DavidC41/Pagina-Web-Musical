@@ -12,13 +12,5 @@
     "precio": "49,99â¬",
     "imagen": "Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
-  },
-  "ASD": {
-    "artista": "ASD",
-    "titulo": "ASD",
-    "precio": "9,99",
-    "imagen": "Imagenes/default.png",
-    "desc": "SAD",
-    "agotado": false
   }
 }

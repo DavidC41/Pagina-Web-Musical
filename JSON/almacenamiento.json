@@ -2,15 +2,23 @@
   "diego900": {
     "artista": "Diego900",
     "titulo": "La espalda del sol",
-    "precio": "25,99€",
+    "precio": "25,99â¬",
     "imagen": "Imagenes/diego900-vinilo.png",
-    "desc": "Edición limitada."
+    "desc": "EdiciÃ³n limitada."
   },
   "kanye-west": {
     "artista": "Kanye West",
     "titulo": "MBDTF",
-    "precio": "49,99€",
+    "precio": "49,99â¬",
     "imagen": "Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
+  },
+  "ASD": {
+    "artista": "ASD",
+    "titulo": "ASD",
+    "precio": "9,99",
+    "imagen": "Imagenes/default.png",
+    "desc": "SAD",
+    "agotado": false
   }
 }

@@ -53,7 +53,6 @@ body {
 .vinilo-card {
     position: relative;
     transition: all 0.4s ease;
-    background-color: #e4d0d0;
     display: flex;
     flex-direction: column;
 }
@@ -63,7 +62,7 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background-color: #111; 
+    background-color: #e4d0d0;
     border: 1px solid #222; 
     margin-bottom: 20px;
 }

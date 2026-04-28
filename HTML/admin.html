@@ -8,25 +8,58 @@
 </head>
 <body class="admin-page">
 
-    <section id="login-section" class="admin-container">
-        <a href="index.html" class="back-link">← VOLVER AL INICIO</a>
+    <header class="main-header" id="header">
+        <div class="logo-container">
+            <h1 class="brand-name">BIBERON</h1>
+        </div>
+        
+        <input type="checkbox" id="menu-toggle" style="display:none;">
+
+        <div class="header-actions">
+            <button class="action-menu" id="open-menu" aria-label="Abir menú">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+
+        <nav id="side-menu" class="side-menu">
+            <div class="menu-header">
+                <span class="menu-tittle">MENÚ</span>
+                <button class="close-menu" id="close-menu">CERRAR</button>
+            </div>
+            <div class="menu-content">
+                <ul class="nav-links">
+                    <li><a href="../index.html">INICIO</a></li>
+                    <li><a href="tienda.html">VINILOS</a></li>
+                    <li><a href="admin.html">ADMIN</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="login-section" class="admin-container" style="margin-top: 100px;">
+        <a href="../index.html" class="back-link">← VOLVER AL INICIO</a>
         <div class="login-card">
             <h1 class="brand-name">ADMIN LOGIN</h1>
-            <p>Introduce la clave de acceso para gestionar el catálogo</p>
+            <p>Introduce la clave y tu GitHub Token</p>
+            
             <input type="password" id="admin-pass" placeholder="Contraseña">
-            <button class="btn-main" onclick="verificarPassword()">ENTRAR</button>
+            <input type="password" id="github-token" placeholder="GitHub Personal Access Token" style="margin-top: 10px;">
+            
+            <button class="btn-main" onclick="verificarPassword()" style="margin-top: 20px;">ENTRAR</button>
         </div>
     </section>
 
-    <section id="form-section" class="admin-container" style="display: none;">
+    <section id="form-section" class="admin-container" style="display: none; margin-top: 100px;">
         <header class="admin-header">
             <h1>GESTIÓN DE PRODUCTOS</h1>
-            <p>Rellena los campos para generar el bloque de datos</p>
+            <p>Rellena los campos para actualizar la base de datos en tiempo real</p>
         </header>
         
         <div class="admin-form">
             <div class="input-group">
-                <label>ID Único (ej: diego-espalda-sol)</label>
+                <label>ID Único (ej: arca-kick-i)</label>
                 <input type="text" id="p-id">
             </div>
             <div class="input-group">
@@ -50,16 +83,13 @@
                 <textarea id="p-desc" rows="4"></textarea>
             </div>
 
-            <div id="mensaje-exito" class="success-message">
-                  ¡VINILO GENERADO CON ÉXITO!
-            </div>
-
-            <button class="btn-main" id="generate-btn">SUBIR VINILO</button>
+            <button class="btn-main" id="btn-guardar-github">SUBIR VINILO A GITHUB</button>
             
             <div id="code-output" class="output-box"></div>
         </div>
     </section>
 
     <script src="../JavaScript/main.js"></script>
+    <script src="../JavaScript/admin.js"></script>
 </body>
 </html>

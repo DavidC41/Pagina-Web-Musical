@@ -2,21 +2,21 @@
   "diego900": {
     "artista": "Diego900",
     "titulo": "La espalda del sol",
-    "precio": "25,99â¬",
+    "precio": "25,99€",
     "imagen": "../Imagenes/diego900-vinilo.png",
     "desc": "EdiciÃ³n limitada."
   },
   "kanye-west": {
     "artista": "Kanye West",
     "titulo": "My Beautiful Dark Twisted Fantasy",
-    "precio": "49,99â¬",
+    "precio": "49,99€",
     "imagen": "../Imagenes/Kanye_West-vinilo.png",
     "desc": "Triple vinilo."
   },
   "carolina_durante": {
     "artista": "Carolina Durante",
     "titulo": "Elige Tu Propia Aventura",
-    "precio": "19,99â¬",
+    "precio": "19,99€",
     "imagen": "../Imagenes/carolina_durante-vinilo.png",
     "desc": "Victor te quiero",
     "agotado": false

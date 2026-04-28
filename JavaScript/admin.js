@@ -1,7 +1,7 @@
 /* --- MISMA CONFIGURACIÓN --- */
 const OWNER = 'DavidC41'; 
 const REPO = 'Pagina-Web-Musical';
-const DATA_PATH = 'JSON/almacenamiento.json';
+const DATA_PATH = '../JSON/almacenamiento.json';
 
 function verificarPassword() {
     const pass = document.getElementById('admin-pass').value;
